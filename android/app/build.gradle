@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.personal_notes"
+    namespace = "com.notes.app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
