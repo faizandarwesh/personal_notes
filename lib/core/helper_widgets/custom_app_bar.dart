@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:personal_notes/modules/search/ui/search_screen.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String icon1;
   final String icon2;
+  final VoidCallback? onSearchPressed;  // Callback for the search button
+  final VoidCallback? onInfoPressed;    // Callback for the info button
 
-  const CustomAppBar(
-      {super.key,
-      this.icon1 = "assets/icons/search.svg",
-      this.icon2 = "assets/icons/info_outline.svg"});
-
+  const CustomAppBar({
+    super.key,
+    this.icon1 = "assets/icons/search.svg",
+    this.icon2 = "assets/icons/info_outline.svg",
+    this.onSearchPressed,   // Accepting callback from outside
+    this.onInfoPressed,     // Accepting callback from outside
+  });
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,12 +29,7 @@ class CustomAppBar extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SearchScreen()));
-                  },
+                  onPressed: onSearchPressed,
                   icon: SvgPicture.asset(icon1)),
             ),
           ),
@@ -42,7 +40,7 @@ class CustomAppBar extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child:
-                  IconButton(onPressed: () {}, icon: SvgPicture.asset(icon2)),
+                  IconButton(onPressed: onInfoPressed, icon: SvgPicture.asset(icon2)),
             ),
           ),
         ],

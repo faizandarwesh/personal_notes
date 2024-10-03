@@ -22,7 +22,9 @@ class SearchScreen extends StatelessWidget {
               controller: searchFieldController,
               textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 32,),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 32,
+                  ),
                   filled: true,
                   fillColor: Theme.of(context).cardColor,
                   border: const OutlineInputBorder(
