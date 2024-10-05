@@ -16,8 +16,9 @@ class CustomAppBar extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.only(top: 16, left: 16.0, right: 16.0),  // Add top padding based on the status bar height
       child: Row(
         children: [
           Text(

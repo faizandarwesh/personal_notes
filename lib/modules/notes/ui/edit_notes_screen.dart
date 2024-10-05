@@ -37,9 +37,11 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
         _firestoreService.addNote(title, content).then((_) {
           _titleController.clear();
           _contentController.clear();
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Note added successfully')),
-          );
+          if (context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Note added successfully')),
+            );
+          }
 
           Navigator.pop(context);
         });
@@ -48,17 +50,22 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
         _firestoreService.updateNote(widget.id, title, content).then((_) {
           _titleController.clear();
           _contentController.clear();
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Note added successfully')),
-          );
+          if(context.mounted){
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Note added successfully')),
+            );
+            Navigator.pop(context);
+          }
 
-          Navigator.pop(context);
+
         });
       }
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a title and content')),
-      );
+      if(context.mounted){
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Please enter a title and content')),
+        );
+      }
     }
   }
 

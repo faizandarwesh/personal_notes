@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:personal_notes/modules/notes/ui/edit_notes_screen.dart';
+import 'package:personal_notes/modules/search/ui/search_screen.dart';
 import '../../../core/helper_widgets/custom_app_bar.dart';
 import '../../../core/helper_widgets/custom_placeholder_screen.dart';
 
@@ -14,11 +15,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   final CollectionReference _notesCollection =
       FirebaseFirestore.instance.collection('notes');
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).cardColor,
@@ -33,7 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const CustomAppBar(),
+           CustomAppBar(onSearchPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchScreen()));
+          },),
           const SizedBox(
             height: 32,
           ),
@@ -98,13 +103,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Card(
                               margin: const EdgeInsets.symmetric(
                                   horizontal: 24, vertical: 10),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 48, vertical: 20),
-                                child: Text(
-                                  title,
-                                  style:
-                                      Theme.of(context).textTheme.displayMedium,
+                              child: Container(
+                                width: double.infinity,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 48, vertical: 20),
+                                  child: Text(
+                                    title,
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.displayMedium,
+                                  ),
                                 ),
                               ),
                             ),

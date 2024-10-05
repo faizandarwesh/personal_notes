@@ -32,4 +32,19 @@ class FirestoreService {
     }
   }
 
+  // Search notes by title (case-insensitive)
+  Future<List<QueryDocumentSnapshot>> searchNotesByTitle(String query) async {
+    try {
+      // Search for notes where the title contains the query (case-insensitive)
+      final searchResults = await notesCollection
+          .where('title', isGreaterThanOrEqualTo: query)
+          .where('title', isLessThanOrEqualTo: query + '\uf8ff')
+          .get();
+      return searchResults.docs;
+    } catch (e) {
+      print("Error searching notes by title: $e");
+      return [];
+    }
+  }
+
 }
