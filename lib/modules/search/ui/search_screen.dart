@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:personal_notes/utils/colors/color_constants.dart';
 import '../../../core/helper_widgets/custom_placeholder_screen.dart';
 import '../../../service/firebase_service.dart';
+import '../../notes/ui/edit_notes_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -87,29 +88,39 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget _buildNoteCard(Map<String, dynamic> noteData) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      elevation: 3,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              noteData['title'] ?? 'No Title',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium!
-                  .copyWith(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              noteData['content'] ?? 'No Content',
-              style: Theme.of(context).textTheme.displaySmall,
-            ),
-            const SizedBox(height: 8),
-          ],
+    return GestureDetector(
+      onTap: (){
+     /*   Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => EditNotesScreen(id: noteData['id'], title: noteData['title'], content: noteData['content']),
+          ),
+        );*/
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        elevation: 3,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                noteData['title'] ?? 'No Title',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium!
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                noteData['content'] ?? 'No Content',
+                style: Theme.of(context).textTheme.displaySmall,
+              ),
+              const SizedBox(height: 8),
+            ],
+          ),
         ),
       ),
     );
