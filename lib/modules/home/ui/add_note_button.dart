@@ -15,7 +15,9 @@ class AddNoteButton extends StatelessWidget {
       onPressed: () async{
         var result = await Navigator.push(context,
             MaterialPageRoute(builder: (context) => const EditNotesScreen()));
+        if(result != null) {
           HelperFunctions().showCustomSnackBar(context, '$result');
+        }
 
       },
     );

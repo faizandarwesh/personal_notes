@@ -43,7 +43,9 @@ class NoteCard extends StatelessWidget {
         onTap: () async{
           var result = await Navigator.push(context,
               MaterialPageRoute(builder: (context) =>  EditNotesScreen(id: noteId, title: title, content: content)));
-          HelperFunctions().showCustomSnackBar(context, '$result');
+         if(result != null){
+           HelperFunctions().showCustomSnackBar(context, '$result');
+         }
         },
         child: Card(
           color: backgroundColor,
