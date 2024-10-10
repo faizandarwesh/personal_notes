@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:personal_notes/utils/colors/color_constants.dart';
 import '../../../core/helper_widgets/custom_placeholder_screen.dart';
 import '../../../service/firebase_service.dart';
-import '../../notes/ui/edit_notes_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

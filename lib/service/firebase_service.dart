@@ -12,7 +12,6 @@ class FirestoreService {
         'content': content,
         'createdAt': FieldValue.serverTimestamp(), // Server timestamp for sorting
       });
-      print("Note added successfully");
     } catch (e) {
       print("Failed to add note: $e");
     }
@@ -26,7 +25,6 @@ class FirestoreService {
         'content': content,
         'updatedAt': FieldValue.serverTimestamp(), // Timestamp to track last update
       });
-      print("Note updated successfully");
     } catch (e) {
       print("Failed to update note: $e");
     }
@@ -38,11 +36,10 @@ class FirestoreService {
       // Search for notes where the title contains the query (case-insensitive)
       final searchResults = await notesCollection
           .where('title', isGreaterThanOrEqualTo: query)
-          .where('title', isLessThanOrEqualTo: query + '\uf8ff')
+          .where('title', isLessThanOrEqualTo: '$query\uf8ff')
           .get();
       return searchResults.docs;
     } catch (e) {
-      print("Error searching notes by title: $e");
       return [];
     }
   }

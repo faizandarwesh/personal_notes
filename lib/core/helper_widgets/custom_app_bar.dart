@@ -28,7 +28,7 @@ class CustomAppBar extends StatelessWidget {
           const Spacer(),
           Card(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(5.0),
               child: IconButton(
                   onPressed: onSearchPressed,
                   icon: SvgPicture.asset(icon1)),
@@ -39,7 +39,7 @@ class CustomAppBar extends StatelessWidget {
           ),
           Card(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(5.0),
               child:
                   IconButton(onPressed: onInfoPressed, icon: SvgPicture.asset(icon2)),
             ),

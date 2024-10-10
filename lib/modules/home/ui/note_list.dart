@@ -9,7 +9,7 @@ import 'notes_card.dart';
 class NotesList extends StatelessWidget {
   final CollectionReference notesCollection;
 
-  const NotesList({Key? key, required this.notesCollection}) : super(key: key);
+  const NotesList({super.key, required this.notesCollection});
 
   @override
   Widget build(BuildContext context) {
