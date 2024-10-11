@@ -18,14 +18,11 @@ class HelperFunctions {
   Color generateMaterialColor() {
     // List of some Material colors
     List<Color> materialColors = [
-      Colors.red,
       Colors.blue,
       Colors.green,
       Colors.purple,
-      Colors.orange,
       Colors.teal,
       Colors.indigo,
-      Colors.brown,
       Colors.cyan,
     ];
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:personal_notes/core/helper_widgets/custom_app_bar.dart';
 import '../controller/edit_notes_controller.dart';
 import '../../../utils/colors/color_constants.dart';
@@ -23,6 +24,8 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
   final NoteController _noteController = NoteController(); // Instantiate the controller
+  // QuillController _controller = QuillController.basic();
+
 
   @override
   void initState() {
@@ -110,6 +113,18 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
                 border: InputBorder.none,
               ),
             ),
+         /*   QuillSimpleToolbar(
+
+              controller: _controller,
+              configurations: const QuillSimpleToolbarConfigurations(showSearchButton: false,showClipboardCopy: false, showClipboardPaste: false, showLineHeightButton: false, showLink: false, showClipboardCut: false, showCodeBlock: false,showDirection: false, showDividers: false, showClearFormat: false, showFontFamily: false, showIndent: false, showSmallButton: false, showSuperscript: false, showStrikeThrough: false, showQuote: false, showRightAlignment: false, showColorButton: false, showBackgroundColorButton: false, showSubscript: false),
+            ),
+            Expanded(
+              child: QuillEditor.basic(
+                controller: _controller,
+                configurations: const QuillEditorConfigurations(),
+              ),
+            )
+*/
           ],
         ),
       ),

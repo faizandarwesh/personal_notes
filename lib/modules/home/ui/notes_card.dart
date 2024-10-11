@@ -22,7 +22,7 @@ class NoteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dismissible(
       key: ValueKey(noteId),
-      direction: DismissDirection.horizontal,
+      direction: DismissDirection.endToStart,
       confirmDismiss: (direction) async {
         bool shouldDelete = await HelperFunctions().showCustomCupertinoDialog(
           context,
@@ -32,7 +32,7 @@ class NoteCard extends StatelessWidget {
 
         if (shouldDelete) {
           onDelete();
-        };
+        }
         return shouldDelete; // Return true to delete, false to cancel
       },
       background: Container(
@@ -48,7 +48,8 @@ class NoteCard extends StatelessWidget {
          }
         },
         child: Card(
-          color: backgroundColor,
+          elevation: 0,
+          color: backgroundColor.withOpacity(0.6),
           margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
           child: SizedBox(
             width: double.infinity,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_notes/modules/home/ui/home_screen.dart';
+import 'package:personal_notes/modules/auth/ui/register_screen.dart';
 import 'package:personal_notes/utils/theme/theme_config.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Personal Notes',
       theme: ThemeConfig().darkTheme,
-      home: const HomeScreen(),
+      home: RegisterScreen(),
     );
   }
 }
