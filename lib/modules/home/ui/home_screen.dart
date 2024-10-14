@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:personal_notes/modules/auth/controller/auth_controller.dart';
 import 'package:personal_notes/modules/search/ui/search_screen.dart';
 import '../../../core/helper_widgets/custom_app_bar.dart';
 import 'add_note_button.dart';
@@ -27,6 +28,9 @@ class _HomeScreenState extends State<HomeScreen> {
               onSearchPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const SearchScreen()));
+              },
+              onInfoPressed: (){
+                 AuthController().signOut(context);
               },
             ),
             const SizedBox(height: 32),

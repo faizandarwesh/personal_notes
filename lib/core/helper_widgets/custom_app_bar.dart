@@ -4,21 +4,22 @@ import 'package:flutter_svg/flutter_svg.dart';
 class CustomAppBar extends StatelessWidget {
   final String icon1;
   final String icon2;
-  final VoidCallback? onSearchPressed;  // Callback for the search button
-  final VoidCallback? onInfoPressed;    // Callback for the info button
+  final VoidCallback? onSearchPressed; // Callback for the search button
+  final VoidCallback? onInfoPressed; // Callback for the info button
 
   const CustomAppBar({
     super.key,
     this.icon1 = "assets/icons/search.svg",
     this.icon2 = "assets/icons/info_outline.svg",
-    this.onSearchPressed,   // Accepting callback from outside
-    this.onInfoPressed,     // Accepting callback from outside
+    this.onSearchPressed, // Accepting callback from outside
+    this.onInfoPressed, // Accepting callback from outside
   });
+
   @override
   Widget build(BuildContext context) {
-
     return Padding(
-      padding: const EdgeInsets.only(top: 16, left: 16.0, right: 16.0),  // Add top padding based on the status bar height
+      padding: const EdgeInsets.only(top: 16, left: 16.0, right: 16.0),
+      // Add top padding based on the status bar height
       child: Row(
         children: [
           Text(
@@ -30,8 +31,7 @@ class CustomAppBar extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: IconButton(
-                  onPressed: onSearchPressed,
-                  icon: SvgPicture.asset(icon1)),
+                  onPressed: onSearchPressed, icon: SvgPicture.asset(icon1)),
             ),
           ),
           const SizedBox(
@@ -40,8 +40,8 @@ class CustomAppBar extends StatelessWidget {
           Card(
             child: Padding(
               padding: const EdgeInsets.all(5.0),
-              child:
-                  IconButton(onPressed: onInfoPressed, icon: SvgPicture.asset(icon2)),
+              child: IconButton(
+                  onPressed: onInfoPressed, icon: const Icon(Icons.power_settings_new)),
             ),
           ),
         ],

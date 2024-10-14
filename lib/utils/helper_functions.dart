@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'colors/color_constants.dart';
 
 class HelperFunctions {
@@ -13,6 +12,41 @@ class HelperFunctions {
       random.nextInt(256), // Green value
       random.nextInt(256), // Blue value
     );
+  }
+
+   String? validateEmptyFields(String? value){
+
+    if(value == null || value.isEmpty){
+      return "Please fill the required field";
+    }
+
+    return null;
+   }
+
+   String? validateEmail(String? value) {
+    // Regular expression for validating an email address
+    String pattern = r'^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]+';
+    RegExp regex = RegExp(pattern);
+
+    if (value == null || value.isEmpty) {
+      return 'Please enter your email';
+    } else if (!regex.hasMatch(value)) {
+      return 'Please enter a valid email';
+    }
+    return null; // Validation passed
+  }
+
+   String? validatePassword(String? value) {
+    // Regular expression for password with at least 1 special character, 1 number, and 8 characters long
+    String pattern = r'^(?=.*[!@#\$&*~])(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$';
+    RegExp regex = RegExp(pattern);
+
+    if (value == null || value.isEmpty) {
+      return 'Please enter your password';
+    } else if (!regex.hasMatch(value)) {
+      return 'Password must be at least 8 characters long, include a special character, and contain a number';
+    }
+    return null; // Validation passed
   }
 
   Color generateMaterialColor() {

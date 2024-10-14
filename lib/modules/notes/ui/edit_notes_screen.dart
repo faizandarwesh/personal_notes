@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quill/flutter_quill.dart';
 import 'package:personal_notes/core/helper_widgets/custom_app_bar.dart';
 import '../controller/edit_notes_controller.dart';
 import '../../../utils/colors/color_constants.dart';

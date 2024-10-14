@@ -6,6 +6,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputType inputType;
   final bool isObscure;
   final bool isSuggestionEnabled;
+  final String? Function(String?)? validator;
 
   const CustomTextField({
     super.key,
@@ -14,6 +15,7 @@ class CustomTextField extends StatelessWidget {
     required this.inputType,
     required this.isObscure,
     required this.isSuggestionEnabled,
+    this.validator,
   });
 
   @override
@@ -24,7 +26,9 @@ class CustomTextField extends StatelessWidget {
       enableSuggestions: isSuggestionEnabled,
       keyboardType: inputType,
       style: Theme.of(context).textTheme.displaySmall!,
+      validator: validator,
       decoration: InputDecoration(
+        errorMaxLines: 2,
         contentPadding: const EdgeInsets.symmetric(horizontal: 16),
         hintText: hintText,
         hintStyle: Theme.of(context).textTheme.displaySmall!.copyWith(
