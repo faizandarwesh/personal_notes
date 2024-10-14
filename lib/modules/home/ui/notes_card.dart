@@ -6,7 +6,7 @@ class NoteCard extends StatelessWidget {
   final String noteId;
   final String title;
   final String content;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   final VoidCallback onDelete;
 
   const NoteCard({
@@ -49,7 +49,7 @@ class NoteCard extends StatelessWidget {
         },
         child: Card(
           elevation: 0,
-          color: backgroundColor.withOpacity(0.6),
+          color: backgroundColor!.withOpacity(0.6),
           margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
           child: SizedBox(
             width: double.infinity,

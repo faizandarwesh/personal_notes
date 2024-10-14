@@ -31,7 +31,12 @@ class CustomAppBar extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: IconButton(
-                  onPressed: onSearchPressed, icon: SvgPicture.asset(icon1)),
+                  onPressed: onSearchPressed,
+                  icon: SvgPicture.asset(
+                    icon1,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                  )),
             ),
           ),
           const SizedBox(
@@ -41,7 +46,12 @@ class CustomAppBar extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: IconButton(
-                  onPressed: onInfoPressed, icon: const Icon(Icons.power_settings_new)),
+                  onPressed: onInfoPressed,
+                  icon: SvgPicture.asset(
+                    icon2,
+                    colorFilter:
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                  )),
             ),
           ),
         ],

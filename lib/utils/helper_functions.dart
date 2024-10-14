@@ -49,6 +49,8 @@ class HelperFunctions {
     return null; // Validation passed
   }
 
+
+
   Color generateMaterialColor() {
     // List of some Material colors
     List<Color> materialColors = [
@@ -107,6 +109,10 @@ class HelperFunctions {
       },
     ).then(
         (value) => value ?? false); // Return false if null (dialog dismissed)
+  }
+
+  String colorToHex64(Color color) {
+    return '0x${color.value.toRadixString(16).padLeft(8, '0').toUpperCase()}';
   }
 
   void showLoadingDialog(BuildContext context) {

@@ -32,6 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
               onInfoPressed: (){
                  AuthController().signOut(context);
               },
+              icon1: "assets/icons/search.svg",
+              icon2: "assets/icons/logout.svg",
             ),
             const SizedBox(height: 32),
             Expanded(

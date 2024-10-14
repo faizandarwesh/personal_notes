@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:personal_notes/core/helper_widgets/custom_app_bar.dart';
 import '../controller/edit_notes_controller.dart';
 import '../../../utils/colors/color_constants.dart';
@@ -24,10 +25,11 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
 
-  FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final NoteController _noteController = NoteController(); // Instantiate the controller
   // QuillController _controller = QuillController.basic();
 
+  Color selectedColor = Colors.blue; // Default color
 
   @override
   void initState() {
@@ -35,6 +37,36 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
     _contentController.text = widget.content;
 
     super.initState();
+  }
+
+  void pickColor(BuildContext context) {
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Pick a color'),
+          content: SingleChildScrollView(
+            child: ColorPicker(
+              pickerColor: selectedColor, // Current color
+              onColorChanged: (Color color) {
+                setState(() {
+                  selectedColor = color; // Set new color
+                });
+              },
+            ),
+          ),
+          actions: <Widget>[
+            ElevatedButton(
+              child: const Text('Got it'),
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void _handleSave() {
@@ -47,6 +79,7 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
         id: _firebaseAuth.currentUser!.uid,
         title: title,
         content: content,
+        color: selectedColor,
         context: context,
       );
     } else {
@@ -70,10 +103,10 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
           children: [
             CustomAppBar(
               onSearchPressed: () {
-                Navigator.pop(context);
+                pickColor(context);
               },
               onInfoPressed: _handleSave, // Use the new handler
-              icon1: "assets/icons/visibility.svg",
+              icon1: "assets/icons/color_palette.svg",
               icon2: "assets/icons/save.svg",
             ),
             const SizedBox(height: 16),
@@ -116,18 +149,6 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
                 border: InputBorder.none,
               ),
             ),
-         /*   QuillSimpleToolbar(
-
-              controller: _controller,
-              configurations: const QuillSimpleToolbarConfigurations(showSearchButton: false,showClipboardCopy: false, showClipboardPaste: false, showLineHeightButton: false, showLink: false, showClipboardCut: false, showCodeBlock: false,showDirection: false, showDividers: false, showClearFormat: false, showFontFamily: false, showIndent: false, showSmallButton: false, showSuperscript: false, showStrikeThrough: false, showQuote: false, showRightAlignment: false, showColorButton: false, showBackgroundColorButton: false, showSubscript: false),
-            ),
-            Expanded(
-              child: QuillEditor.basic(
-                controller: _controller,
-                configurations: const QuillEditorConfigurations(),
-              ),
-            )
-*/
           ],
         ),
       ),

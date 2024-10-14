@@ -1,16 +1,23 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:personal_notes/utils/helper_functions.dart';
 
 class FirestoreService {
   final CollectionReference notesCollection =
       FirebaseFirestore.instance.collection('notes');
 
-  Future<void> addNote(String userId, String title, String content) async {
+  Future<void> addNote(String userId, String title, String content,Color color) async {
     try {
+
+      String hexColor = HelperFunctions().colorToHex64(color);
+
       // Add a new note to the Firestore collection
       await notesCollection.add({
         'id': userId,
         'title': title,
         'content': content,
+        'color' : hexColor,
         'createdAt': FieldValue.serverTimestamp(),
         // Server timestamp for sorting
       });

@@ -9,6 +9,7 @@ class NoteController {
     required String id,
     required String title,
     required String content,
+    Color? color,
     required BuildContext context,
   }) async {
     if (title.isNotEmpty && content.isNotEmpty) {
@@ -17,7 +18,7 @@ class NoteController {
 
       try {
         // Add or update the note based on the content
-        await _firestoreService.addNote(id, title, content);
+        await _firestoreService.addNote(id, title, content,color!);
         HelperFunctions()
             .showCustomSnackBar(context, 'Note added successfully');
       } catch (error) {

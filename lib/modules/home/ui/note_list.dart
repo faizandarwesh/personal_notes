@@ -4,7 +4,6 @@ import 'package:personal_notes/utils/helper_functions.dart';
 import '../../../core/helper_widgets/custom_placeholder_screen.dart';
 import 'notes_card.dart';
 
-
 /// Widget to display the list of notes with Firestore stream handling
 class NotesList extends StatelessWidget {
   final CollectionReference notesCollection;
@@ -38,14 +37,22 @@ class NotesList extends StatelessWidget {
             final title = noteData['title'] ?? 'No title';
             final content = noteData['content'] ?? 'No content';
 
-            // Generate a random color for each card
-            final Color randomColor = HelperFunctions().generateMaterialColor();
+            // Assign selected color to the notes card
+            final selectedColor = noteData['color'];
+            Color? randomColor;
+
+            if (selectedColor == null) {
+              // Generate a random color in case of no color selected by the user
+              randomColor = HelperFunctions().generateMaterialColor();
+            }
 
             return NoteCard(
               noteId: notesId,
               title: title,
               content: content,
-              backgroundColor: randomColor,
+              backgroundColor: selectedColor == null
+                  ? randomColor
+                  : Color(int.parse(selectedColor)),
               onDelete: () => notesCollection.doc(notesId).delete(),
             );
           },
