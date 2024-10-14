@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_notes/core/helper_widgets/custom_app_bar.dart';
 import '../controller/edit_notes_controller.dart';
@@ -22,6 +23,8 @@ class EditNotesScreen extends StatefulWidget {
 class _EditNotesScreenState extends State<EditNotesScreen> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
+
+  FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final NoteController _noteController = NoteController(); // Instantiate the controller
   // QuillController _controller = QuillController.basic();
 
@@ -41,6 +44,7 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
     if (widget.id.isEmpty) {
       // Adding a new note
       _noteController.addNote(
+        id: _firebaseAuth.currentUser!.uid,
         title: title,
         content: content,
         context: context,

@@ -46,8 +46,11 @@ class AuthController {
 
       Navigator.pop(context); // Close loading dialog
 
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+            (Route<dynamic> route) => false, // Remove all previous routes
+      );
 
       return "Login successfully";
     } on FirebaseAuthException catch (e) {
@@ -67,8 +70,11 @@ class AuthController {
 
       Navigator.pop(context); // Close loading dialog
 
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+            (Route<dynamic> route) => false, // Remove all previous routes
+      );
 
       return "Register successfully";
     } on FirebaseAuthException catch (e) {

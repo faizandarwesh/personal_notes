@@ -2,15 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreService {
   final CollectionReference notesCollection =
-  FirebaseFirestore.instance.collection('notes');
+      FirebaseFirestore.instance.collection('notes');
 
-  Future<void> addNote(String title, String content) async {
+  Future<void> addNote(String userId, String title, String content) async {
     try {
       // Add a new note to the Firestore collection
       await notesCollection.add({
+        'id': userId,
         'title': title,
         'content': content,
-        'createdAt': FieldValue.serverTimestamp(), // Server timestamp for sorting
+        'createdAt': FieldValue.serverTimestamp(),
+        // Server timestamp for sorting
       });
     } catch (e) {
       print("Failed to add note: $e");
@@ -23,7 +25,8 @@ class FirestoreService {
       await notesCollection.doc(id).update({
         'title': title,
         'content': content,
-        'updatedAt': FieldValue.serverTimestamp(), // Timestamp to track last update
+        'updatedAt': FieldValue.serverTimestamp(),
+        // Timestamp to track last update
       });
     } catch (e) {
       print("Failed to update note: $e");
@@ -43,5 +46,4 @@ class FirestoreService {
       return [];
     }
   }
-
 }
