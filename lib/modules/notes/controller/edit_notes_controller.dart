@@ -6,7 +6,7 @@ class NoteController {
   final FirestoreService _firestoreService = FirestoreService();
 
   Future<void> addNote({
-    required String id,
+    required String userId,
     required String title,
     required String content,
     Color? color,
@@ -18,7 +18,7 @@ class NoteController {
 
       try {
         // Add or update the note based on the content
-        await _firestoreService.addNote(id, title, content,color!);
+        await _firestoreService.addNote(userId, title, content, color!);
         HelperFunctions()
             .showCustomSnackBar(context, 'Note added successfully');
       } catch (error) {
@@ -38,6 +38,7 @@ class NoteController {
     required String id,
     required String title,
     required String content,
+    Color? color,
     required BuildContext context,
   }) async {
     if (title.isNotEmpty && content.isNotEmpty) {
@@ -46,7 +47,7 @@ class NoteController {
 
       try {
         // Update the note
-        await _firestoreService.updateNote(id, title, content);
+        await _firestoreService.updateNote(id, title, content, color!);
         HelperFunctions()
             .showCustomSnackBar(context, 'Note updated successfully');
       } catch (error) {

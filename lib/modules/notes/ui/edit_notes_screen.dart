@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:personal_notes/core/helper_widgets/custom_app_bar.dart';
+import 'package:personal_notes/utils/helper_functions.dart';
 import '../controller/edit_notes_controller.dart';
 import '../../../utils/colors/color_constants.dart';
 
@@ -29,7 +30,7 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
   final NoteController _noteController = NoteController(); // Instantiate the controller
   // QuillController _controller = QuillController.basic();
 
-  Color selectedColor = Colors.blue; // Default color
+  Color selectedColor = HelperFunctions().generateMaterialColor(); // Default color
 
   @override
   void initState() {
@@ -76,7 +77,7 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
     if (widget.id.isEmpty) {
       // Adding a new note
       _noteController.addNote(
-        id: _firebaseAuth.currentUser!.uid,
+        userId: _firebaseAuth.currentUser!.uid,
         title: title,
         content: content,
         color: selectedColor,

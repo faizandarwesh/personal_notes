@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:personal_notes/utils/helper_functions.dart';
 import '../../../core/helper_widgets/custom_placeholder_screen.dart';
@@ -6,14 +7,17 @@ import 'notes_card.dart';
 
 /// Widget to display the list of notes with Firestore stream handling
 class NotesList extends StatelessWidget {
-  final CollectionReference notesCollection;
 
-  const NotesList({super.key, required this.notesCollection});
+  final CollectionReference notesCollection;
+  final String currentUserId = FirebaseAuth.instance.currentUser!.uid;
+
+  NotesList({super.key, required this.notesCollection});
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: notesCollection.snapshots(),
+      stream: notesCollection.where('user_id', isEqualTo: currentUserId)
+          .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CupertinoActivityIndicator());

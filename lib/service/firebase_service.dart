@@ -14,7 +14,7 @@ class FirestoreService {
 
       // Add a new note to the Firestore collection
       await notesCollection.add({
-        'id': userId,
+        'user_id': userId,
         'title': title,
         'content': content,
         'color' : hexColor,
@@ -26,12 +26,16 @@ class FirestoreService {
     }
   }
 
-  Future<void> updateNote(String id, String title, String content) async {
+  Future<void> updateNote(String id, String title, String content,Color color) async {
     try {
+
+      String hexColor = HelperFunctions().colorToHex64(color);
       // Update the existing note in Firestore by noteId
+
       await notesCollection.doc(id).update({
         'title': title,
         'content': content,
+        'color' : hexColor,
         'updatedAt': FieldValue.serverTimestamp(),
         // Timestamp to track last update
       });
