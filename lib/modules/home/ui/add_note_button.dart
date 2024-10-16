@@ -18,7 +18,6 @@ class AddNoteButton extends StatelessWidget {
         if(result != null) {
           HelperFunctions().showCustomSnackBar(context, '$result');
         }
-
       },
     );
   }

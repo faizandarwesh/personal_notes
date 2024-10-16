@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:personal_notes/core/helper_widgets/custom_app_bar.dart';
 import 'package:personal_notes/utils/helper_functions.dart';
+import 'package:share_plus/share_plus.dart';
 import '../controller/edit_notes_controller.dart';
 import '../../../utils/colors/color_constants.dart';
 
@@ -27,10 +29,12 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
   final TextEditingController _contentController = TextEditingController();
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final NoteController _noteController = NoteController(); // Instantiate the controller
+  final NoteController _noteController =
+      NoteController(); // Instantiate the controller
   // QuillController _controller = QuillController.basic();
 
-  Color selectedColor = HelperFunctions().generateMaterialColor(); // Default color
+  Color selectedColor =
+      HelperFunctions().generateMaterialColor(); // Default color
 
   @override
   void initState() {
@@ -41,7 +45,6 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
   }
 
   void pickColor(BuildContext context) {
-
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -97,6 +100,14 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).cardColor,
+        child: SvgPicture.asset("assets/icons/color_palette.svg",
+            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn)),
+        onPressed: () {
+          pickColor(context);
+        },
+      ),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -104,10 +115,10 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
           children: [
             CustomAppBar(
               onSearchPressed: () {
-                pickColor(context);
+                Share.share(widget.content, subject: widget.title);
               },
               onInfoPressed: _handleSave, // Use the new handler
-              icon1: "assets/icons/color_palette.svg",
+              icon1: "assets/icons/share.svg",
               icon2: "assets/icons/save.svg",
             ),
             const SizedBox(height: 16),
