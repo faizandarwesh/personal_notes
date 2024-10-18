@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:personal_notes/modules/auth/ui/login_screen.dart';
 import 'package:personal_notes/modules/auth/ui/register_screen.dart';
 import 'package:personal_notes/modules/home/ui/home_screen.dart';
 import 'package:personal_notes/utils/theme/theme_config.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeConfig().darkTheme,
       home: FirebaseAuth.instance.currentUser != null
           ? const HomeScreen()
-          : RegisterScreen(),
+          : LoginScreen(),
     );
   }
 }

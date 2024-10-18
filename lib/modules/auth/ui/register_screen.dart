@@ -88,20 +88,6 @@ class RegisterScreen extends StatelessWidget {
                           }
                         }
                       }),
-                  const SizedBox(height: 16),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LoginScreen()));
-                    },
-                    child: Text(
-                      'Already have an account?',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.displayMedium,
-                    ),
-                  )
                 ],
               ),
             ),

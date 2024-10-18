@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:personal_notes/modules/auth/controller/auth_controller.dart';
 import 'package:personal_notes/modules/auth/ui/custom_button.dart';
 import 'package:personal_notes/modules/auth/ui/custom_text_field.dart';
+import 'package:personal_notes/modules/auth/ui/register_screen.dart';
 import '../../../utils/helper_functions.dart';
 
 
@@ -79,6 +81,33 @@ class LoginScreen extends StatelessWidget {
                           }
                         }
                       }),
+                  const SizedBox(height: 16),
+                  RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      text: "Don't have an account? ",
+                      style: Theme.of(context).textTheme.displayMedium, // Default text style
+                      children: [
+                        TextSpan(
+                          text: "Sign up",
+                          style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                            color: Colors.blue, // Change the color for "Sign up"
+                            decoration: TextDecoration.underline, // Underline the text
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => RegisterScreen()));
+                            },
+                        ),
+                        const TextSpan(
+                          text: " now",
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),

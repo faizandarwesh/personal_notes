@@ -38,7 +38,6 @@ dependencies:
   flutter_svg: ^2.0.10+1
   firebase_core: ^3.6.0
   cloud_firestore: ^5.4.4
-  flutter_quill: ^10.7.6
   firebase_auth: ^5.3.1
   lottie: ^3.1.2
   flutter_colorpicker: ^1.1.0
