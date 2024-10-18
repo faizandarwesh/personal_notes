@@ -91,7 +91,7 @@ class LoginScreen extends StatelessWidget {
                         TextSpan(
                           text: "Sign up",
                           style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                            color: Colors.blue, // Change the color for "Sign up"
+                            color: Theme.of(context).hintColor, // Change the color for "Sign up"
                             decoration: TextDecoration.underline, // Underline the text
                           ),
                           recognizer: TapGestureRecognizer()
