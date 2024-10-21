@@ -54,6 +54,11 @@ class AuthController {
 
       return "Login successfully";
     } on FirebaseAuthException catch (e) {
+
+      Navigator.pop(context); // Close loading dialog
+
+      HelperFunctions().showCustomSnackBar(context, e.message!);
+
       return e.message; // Return the error message
     }
   }
@@ -78,6 +83,11 @@ class AuthController {
 
       return "Register successfully";
     } on FirebaseAuthException catch (e) {
+
+      Navigator.pop(context); // Close loading dialog
+
+      HelperFunctions().showCustomSnackBar(context, e.message!);
+
       return e.message; // Return the error message
     }
   }

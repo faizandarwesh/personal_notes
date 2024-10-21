@@ -8,7 +8,6 @@ import 'package:personal_notes/modules/auth/ui/custom_text_field.dart';
 import 'package:personal_notes/modules/auth/ui/register_screen.dart';
 import '../../../utils/helper_functions.dart';
 
-
 class LoginScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -68,17 +67,11 @@ class LoginScreen extends StatelessWidget {
                   CustomButton(
                       label: 'Login',
                       onPressed: () async {
-                        // Check if formKey exists, then validate the form before calling onPressed
-                        if (_formKey.currentState!.validate()) {
-                          final String email = _emailController.text.trim();
-                          final String password =
-                              _passwordController.text.trim();
-                          try {
-                           AuthController().login(email,password,context);
+                        final String email = _emailController.text.trim();
+                        final String password = _passwordController.text.trim();
 
-                          } on FirebaseAuthException catch (e) {
-                            print(e.message); // Return the error message
-                          }
+                        if (_formKey.currentState!.validate()) {
+                          AuthController().login(email, password, context);
                         }
                       }),
                   const SizedBox(height: 16),
@@ -86,14 +79,21 @@ class LoginScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                     text: TextSpan(
                       text: "Don't have an account? ",
-                      style: Theme.of(context).textTheme.displayMedium, // Default text style
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayMedium, // Default text style
                       children: [
                         TextSpan(
                           text: "Sign up",
-                          style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                            color: Theme.of(context).hintColor, // Change the color for "Sign up"
-                            decoration: TextDecoration.underline, // Underline the text
-                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium
+                              ?.copyWith(
+                                color: Theme.of(context)
+                                    .hintColor, // Change the color for "Sign up"
+                                decoration: TextDecoration
+                                    .underline, // Underline the text
+                              ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               Navigator.push(

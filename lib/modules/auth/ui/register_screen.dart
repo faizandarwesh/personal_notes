@@ -80,12 +80,7 @@ class RegisterScreen extends StatelessWidget {
                         final String password = _passwordController.text.trim();
 
                         if (_formKey.currentState!.validate()) {
-                          try {
-                            AuthController().register(email,password,context);
-
-                          } on FirebaseAuthException catch (e) {
-                            print(e.message); // Return the error message
-                          }
+                          AuthController().register(email, password, context);
                         }
                       }),
                 ],
